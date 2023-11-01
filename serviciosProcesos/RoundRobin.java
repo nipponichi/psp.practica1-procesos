@@ -2,17 +2,9 @@ package serviciosProcesos;
 
 import java.util.ArrayList;
 
-public class RoundRobin {
+public class RoundRobin extends Auxiliares {
 	
 	ArrayList <Proceso> procesoList = new ArrayList<>();
-	
-	Proceso proceso1 = new Proceso("P1", 200);
-	Proceso proceso2 = new Proceso("P2", 300);
-	Proceso proceso3 = new Proceso("P3", 400);
-	Proceso proceso4 = new Proceso("P4", 200);
-	
-	long tiempoTotal;
-	int quantum = 50;
 	int loop = 1;
 	
 	public void resolucionProceso() {
@@ -26,14 +18,13 @@ public class RoundRobin {
 		do { 
 			
 			for (int i = 0; i < procesoList.size(); i++) {
-				long tiempoInicio = System.currentTimeMillis();
+				
+				getTiempoInicio();
 	        
-				//Consumimos el tiempo de proceso a modo de sleep.
+				//Consumimos el tiempo de proceso a modo de sleep y restamos el tiempo quantum de la duracion del proceso.
 				try {
 
 					procesoList.get(i).setDuracion(procesoList.get(i).getDuracion() - quantum);
-
-	        	
 					Thread.sleep(quantum);
 	        
 				} catch (InterruptedException ex) {
@@ -42,8 +33,9 @@ public class RoundRobin {
 	        	
 				}
 	
-				long tiempoFinal = System.currentTimeMillis();
-				long tiempoProceso = tiempoFinal - tiempoInicio;
+				getTiempoFinal();
+				
+				tiempoProceso = tiempoFinal - tiempoInicio;
 	        
 				//Mostramos el tiempo de procesamiento de cada proceso y su orden
 				System.out.println(procesoList.get(i).getNombre() + " -> Procesamiento: " + procesoList.get(i).getDuracion()+" ms");
@@ -56,10 +48,11 @@ public class RoundRobin {
 				}
 			}
 			
+			//Mostramos el número de vuelta
 			System.out.println("Loop numero: "+loop);
 			loop++;
 		
-		//Comprobamos si la coleccion está vacía para abandonar el bucle 
+		//Comprobamos si la colección está vacía para abandonar el bucle 
 		} while (!procesoList.isEmpty());
 		
 		//Tiempo total del proceso

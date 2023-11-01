@@ -4,20 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class SJF {
+public class SJF extends Auxiliares {
 	
 	/* 
 	 * ArrayList permite ordenar los procesos con Comparator
-	 * y Collection.sort() y no elimina los valores publicados.
+	 * y Collection.sort() y no elimina los valores duplicados.
 	 */
 	ArrayList <Proceso> procesoList = new ArrayList<>();
-	
-	Proceso proceso1 = new Proceso("P1", 200);
-	Proceso proceso2 = new Proceso("P2", 300);
-	Proceso proceso3 = new Proceso("P3", 400);
-	Proceso proceso4 = new Proceso("P4", 200);
-	
-	long tiempoTotal;
 	
 	public void resolucionProceso() {
 		
@@ -40,7 +33,8 @@ public class SJF {
 	    
 	    // Con foreach recorremos las posiciones de la colección para procesar los procesos.	
 	    for (Proceso proceso : procesoList) {
-	        long tiempoInicio = System.currentTimeMillis();
+	    	
+	    	getTiempoInicio();
 	        
 	        //Consumimos el tiempo de proceso a modo de sleep.
 	        try {
@@ -52,8 +46,9 @@ public class SJF {
 	        	Thread.currentThread().interrupt();
 	        }
 	
-	        long tiempoFinal = System.currentTimeMillis();
-	        long tiempoProceso = tiempoFinal - tiempoInicio;
+	        getTiempoFinal();
+	        
+	        tiempoProceso = tiempoFinal - tiempoInicio;
 	        
 	        //Mostramos el tiempo de procesamiento de cada proceso y su orden
 	        System.out.println(proceso.getNombre() + " -> Procesamiento: " + proceso.getDuracion()+" ms");

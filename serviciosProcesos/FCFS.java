@@ -4,17 +4,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class FCFS {
+public class FCFS extends Auxiliares {
 	
 	// LinkedHashMap muestra los procesos ordenados como los recibe, como FCFS.
 	Map<String, Integer> procesoFCFS = new LinkedHashMap<String, Integer>();
 	
-	Proceso proceso1 = new Proceso("P1", 200);
-	Proceso proceso2 = new Proceso("P2", 300);
-	Proceso proceso3 = new Proceso("P3", 400);
-	Proceso proceso4 = new Proceso("P4", 200);
-	
-	long tiempoTotal;
 	
 	public void resolucionProceso() {
 
@@ -29,7 +23,7 @@ public class FCFS {
 	        String clave = entry.getKey();
 	        Integer valor = entry.getValue();
 	        
-	        long tiempoInicio = System.currentTimeMillis();
+	        getTiempoInicio();
 	        
 	        //Consumimos el tiempo de proceso a modo de sleep.
 	        try {
@@ -42,8 +36,9 @@ public class FCFS {
 	        	
 	        }
 
-	        long tiempoFinal = System.currentTimeMillis();
-	        long tiempoProceso = tiempoFinal - tiempoInicio;
+	        getTiempoFinal();
+	        
+	        tiempoProceso = tiempoFinal - tiempoInicio;
 	        
 	        //Mostramos el tiempo de procesamiento de cada proceso y su orden
 	        System.out.println(clave + " -> Procesamiento: " + tiempoProceso + " ms");
