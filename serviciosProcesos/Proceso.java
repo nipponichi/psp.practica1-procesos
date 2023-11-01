@@ -5,9 +5,6 @@ public class Proceso {
 	private String nombre;
 	private Integer duracion;
 	
-	//public Map<String, Integer> procesoFCFS = new LinkedHashMap<String, Integer>();
-	//public Map<String, Integer> procesoSJF =  new TreeMap<String, Integer>();
-	
 	Proceso (){
 		
 	}

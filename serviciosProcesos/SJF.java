@@ -6,6 +6,10 @@ import java.util.Comparator;
 
 public class SJF {
 	
+	/* 
+	 * ArrayList permite ordenar los procesos con Comparator
+	 * y Collection.sort() y no elimina los valores publicados.
+	 */
 	ArrayList <Proceso> procesoList = new ArrayList<>();
 	
 	Proceso proceso1 = new Proceso("P1", 200);
@@ -13,6 +17,7 @@ public class SJF {
 	Proceso proceso3 = new Proceso("P3", 400);
 	Proceso proceso4 = new Proceso("P4", 200);
 	
+	long tiempoTotal;
 	
 	public void resolucionProceso() {
 		
@@ -25,6 +30,7 @@ public class SJF {
 	
 		/*Con Comparator, realizamos una comparacion de getDuracion(), seleccionando los mas cortos
 		para colocarlos con Collections en el orden deseado.*/
+		
 		Collections.sort(procesoList, new Comparator<Proceso>() {
 	        @Override
 	        public int compare(Proceso proceso1, Proceso proceso2) {
@@ -32,16 +38,17 @@ public class SJF {
 	        }
 	    });
 	    
-	    long tiempoTotal = 0;
-	
 	    // Con foreach recorremos las posiciones de la colección para procesar los procesos.	
 	    for (Proceso proceso : procesoList) {
 	        long tiempoInicio = System.currentTimeMillis();
 	        
 	        //Consumimos el tiempo de proceso a modo de sleep.
 	        try {
+	        	
 	            Thread.sleep(proceso.getDuracion());
+	            
 	        } catch (InterruptedException ex) {
+	        	
 	        	Thread.currentThread().interrupt();
 	        }
 	

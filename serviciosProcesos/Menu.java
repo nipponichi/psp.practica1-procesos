@@ -25,20 +25,24 @@ public class Menu {
 		
 			switch(seleccion) {
 				case 1:
-					System.out.println("FCFS");
+					System.out.println("FCFS"
+							+ " - First Come First Served");
 					FCFS fcfs = new FCFS();
 					fcfs.resolucionProceso();
 					esMenu = true;
 					break;
 				case 2:
-					System.out.println("SJF");
+					System.out.println("SJF"
+							+ " - Short Job First");
 					SJF sfj = new SJF();
 					sfj.resolucionProceso();
 					esMenu = true;
 					break;
 				case 3:
 					System.out.println("Round Robin");
-					//RoundRobin rr = new RoundRobin();
+					RoundRobin rr = new RoundRobin();
+					rr.resolucionProceso();
+					esMenu = true;
 					break;
 				case 4:
 					cerrarPrograma();
