@@ -26,11 +26,15 @@ public class Menu {
 			switch(seleccion) {
 				case 1:
 					System.out.println("FCFS");
-					//FCFS fcfs = new FCFS();
+					FCFS fcfs = new FCFS();
+					fcfs.resolucionProceso();
+					esMenu = true;
 					break;
 				case 2:
 					System.out.println("SJF");
-					//SJF sfj = new SJF();
+					SJF sfj = new SJF();
+					sfj.resolucionProceso();
+					esMenu = true;
 					break;
 				case 3:
 					System.out.println("Round Robin");
